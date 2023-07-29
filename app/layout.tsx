@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 import { Metadata } from 'next'
+import { Nav, Provider } from '@/components'
 
 export const metadata: Metadata = {
   title: 'Promptopia',
@@ -11,10 +12,15 @@ const RootLayout = ({ children }: ChildrenProps) => {
   return (
     <html>
       <body>
-        <div className="main">
-          <div className="gradient" />
-        </div>
-        <div className="app">{children}</div>
+        <Provider>
+          <div className="main">
+            <div className="gradient" />
+          </div>
+          <div className="app">
+            <Nav />
+            {children}
+          </div>
+        </Provider>
       </body>
     </html>
   )
