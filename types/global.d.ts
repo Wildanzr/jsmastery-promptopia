@@ -20,5 +20,14 @@ declare global {
   interface PromptCardProps {
     post: Post
     handleTagClick: (tag: string) => void
+    handleEdit?: () => void
+    handleDelete?: () => void
+  }
+  interface ProfileProps {
+    name: string;
+    desc: string;
+    data: Post[];
+    handleEdit: (post: Post) => void;
+    handleDelete: (post: Post) => void;
   }
 }
