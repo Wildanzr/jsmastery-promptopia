@@ -56,17 +56,9 @@ export const DELETE = async (req, { params }) => {
   try {
     await connectToDB()
 
-    const willBeDeleted = await Prompt.findById(params.id)
+    await Prompt.findByIdAndDelete(params.id)
 
-    if (!willBeDeleted) {
-      return new Response('Prompt not found', {
-        status: 404,
-      })
-    }
-
-    await willBeDeleted.remove()
-
-    return new Response(JSON.stringify(willBeDeleted), {
+    return new Response('Prompt deleted', {
       status: 200,
     })
   } catch (error) {

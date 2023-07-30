@@ -20,8 +20,9 @@ const Profile = ({
             //@ts-ignore
             key={post._id}
             post={post}
-            handleEdit={handleEdit && handleEdit(post)}
-            handleDelete={handleDelete && handleDelete(post)}
+            handleEdit={() => handleEdit && handleEdit(post)}
+            handleDelete={() => handleDelete && handleDelete(post)}
+            handleTagClick={() => {}}
           />
         ))}
       </div>

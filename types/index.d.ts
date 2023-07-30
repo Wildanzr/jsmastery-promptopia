@@ -11,6 +11,6 @@ declare global {
     interface Post {
         prompt: string
         tag: string
-        creator: Creator
+        creator?: Creator
     }
 }
