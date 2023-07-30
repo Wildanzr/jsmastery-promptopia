@@ -1,8 +1,53 @@
-const Feed = () => {
+'use client'
+
+import { useState, useEffect } from 'react'
+import { PromptCard } from '.'
+import { fetcher } from '@/utils/fetch'
+
+const PromptCardList = ({ data, handleTagClick }: PromptCardListProps) => {
   return (
-    <div className="text-white px-4 sm:px-8 py-2 bg-sky-700 sm:py-3 hover:bg-red-500">
-      Hello there
+    <div className="mt-16 prompt_layout">
+      {data.map((post) => (
+        <PromptCard
+          //@ts-ignore
+          key={post._id}
+          post={post}
+          handleTagClick={handleTagClick}
+        />
+      ))}
     </div>
+  )
+}
+
+const Feed = () => {
+  const [searchText, setSearchText] = useState<string>('')
+  const [post, setPost] = useState<Post[]>([])
+
+  const handleSearchChange = () => {}
+
+  useEffect(() => {
+    const fetchPrompt = async () => {
+      const res = await fetcher('/api/prompt')
+      setPost(res)
+    }
+
+    fetchPrompt()
+  }, [])
+  return (
+    <section className="feed">
+      <form className="relative w-full flex-center">
+        <input
+          type="text"
+          placeholder="Search for a tag or username"
+          value={searchText}
+          onChange={handleSearchChange}
+          required
+          className="search_input peer"
+        />
+      </form>
+
+      <PromptCardList data={post} handleTagClick={() => {}} />
+    </section>
   )
 }
 
